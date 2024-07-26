@@ -1,0 +1,75 @@
+<form class="form" [formGroup]="signUpForm" (ngSubmit)="registerUser()">
+  <div class="form__container">
+    <div class="form__input__wrapper form__input__username">
+      <label for="username" class="form__input__label">User name</label>
+
+      <app-input
+        formControlName="username"
+        placeholder="Write your name"
+        type="text"
+        id="username"
+      ></app-input>
+    </div>
+
+    <div class="form__input__wrapper form__input__wrapper__email">
+      <label for="email" class="form__input__label">Login</label>
+
+      <app-input
+        formControlName="email"
+        placeholder="Email or phone number"
+        id="email"
+      ></app-input>
+    </div>
+
+    <div class="form__input__wrapper form__input__wrapper__type">
+      <label
+        class="form__input__label"
+        for="type"
+        placeholder="Select your type"
+        >Type</label
+      >
+
+      <select class="form__input" id="type" formControlName="type">
+        <option value="" disabled selected>Select Type</option>
+
+        <option value="user">User</option>
+
+        <option value="admin">Admin</option>
+      </select>
+
+      <div
+        class="error__container"
+        *ngIf="
+          this.signUpForm.get('type').invalid &&
+          (this.signUpForm.get('type').dirty ||
+            this.signUpForm.get('type').touched)
+        "
+      >
+        <div class="error" *ngIf="this.signUpForm.get('type').errors?.required">
+          Type is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form__input__wrapper form__input__wrapper__password">
+      <label class="form__input__label" for="email" class="form__input__label">
+        Password
+      </label>
+
+      <app-input
+        formControlName="password"
+        placeholder="Enter Password"
+        type="password"
+        id="password"
+      ></app-input>
+    </div>
+  </div>
+
+  <button
+    class="form__button__submit"
+    type="submit"
+    [disabled]="signUpForm.invalid || isSubmitting"
+  >
+    Submit
+  </button>
+</form>

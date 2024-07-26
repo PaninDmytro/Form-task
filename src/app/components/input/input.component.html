@@ -1,0 +1,46 @@
+<div class="input">
+  <input
+    class="form__input"
+    [placeholder]="placeholder"
+    [type]="type"
+    [value]="value"
+    (input)="onInputChange($event)"
+  />
+
+  <div
+    class="error__container"
+    *ngIf="control?.invalid && (control.dirty || control.touched)"
+  >
+    <div class="error" *ngIf="control.errors?.required">
+      This field is required.
+    </div>
+
+    <div class="error" *ngIf="control.errors?.minlength && type === 'text'">
+      Must be at least 3 characters.
+    </div>
+
+    <div class="error" *ngIf="control.errors?.maxlength && type === 'text'">
+      Must be less than 24 characters.
+    </div>
+
+    <div class="error" *ngIf="control.errors?.email && type === 'email'">
+      Must be a valid email address.
+    </div>
+
+      <div class="error" *ngIf="control.errors?.email">
+          Email must be a valid email address.
+      </div>
+
+    <div class="error" *ngIf="control.errors?.minlength && type === 'password'">
+      Must be at least 5 characters.
+    </div>
+
+    <div class="error" *ngIf="control.errors?.maxlength && type === 'password'">
+      Must be less than 24 characters.
+    </div>
+
+    <div class="error" *ngIf="control.errors?.pattern && type === 'password'">
+      Must contain upper and lower case letters, and at least one special character.
+    </div>
+  </div>
+</div>
